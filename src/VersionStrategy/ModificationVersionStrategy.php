@@ -9,11 +9,6 @@ class ModificationVersionStrategy implements VersionStrategyInterface
     /**
      * @var string
      */
-    protected $version;
-    
-    /**
-     * @var string
-     */
     protected $rootPath;
     
     /**
@@ -39,7 +34,9 @@ class ModificationVersionStrategy implements VersionStrategyInterface
         $assetPath = $this->rootPath . $asset;
         
         if (!file_exists($assetPath)) {
-            throw new InvalidArgumentException(sprintf('Asset file %s does not exist', $assetPath));
+            throw new InvalidArgumentException(
+                sprintf('Asset file %s does not exist', $assetPath)
+            );
         }
         
         return filemtime($assetPath);

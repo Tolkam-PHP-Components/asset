@@ -11,10 +11,11 @@ trait GroupTrait
      *
      * @return bool
      */
-    protected function isAbsoluteUrl(string $str)
+    protected function isAbsoluteUrl(string $str): bool
     {
         return false !== mb_strpos($str, '://') || '//' === mb_substr($str, 0, 2);
     }
+    
     /**
      * Checks if string is an absolute path
      *
@@ -22,7 +23,7 @@ trait GroupTrait
      *
      * @return bool
      */
-    protected function isAbsolutePath(string $str)
+    protected function isAbsolutePath(string $str): bool
     {
         return $str && $str[0] === '/';
     }
@@ -34,7 +35,7 @@ trait GroupTrait
      *
      * @return string
      */
-    protected function removeExtraSlashes(string $url)
+    protected function removeExtraSlashes(string $url): string
     {
         return preg_replace('/([^:])(\/{2,})/', '$1/', $url);
     }

@@ -49,6 +49,7 @@ class AssetManager
     public function setDefaultGroup(AssetGroupInterface $group): self
     {
         $this->defaultGroup = $group;
+        
         return $this;
     }
     
@@ -63,6 +64,7 @@ class AssetManager
     public function addGroup(string $name, AssetGroupInterface $group): self
     {
         $this->groups[$name] = $group;
+        
         return $this;
     }
     
@@ -78,14 +80,18 @@ class AssetManager
     {
         if ($name === null) {
             if (!$this->defaultGroup) {
-                throw new ManagerException('Assets group name is empty but default group was never added');
+                throw new ManagerException(
+                    'Assets group name is empty but default group was never added'
+                );
             }
             
             return $this->defaultGroup;
         }
         
         if (!$group = $this->groups[$name] ?? null) {
-            throw new ManagerException(sprintf('Assets group %s was never added', $name));
+            throw new ManagerException(
+                sprintf('Assets group %s was never added', $name)
+            );
         }
         
         return $group;

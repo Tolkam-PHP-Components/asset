@@ -2,6 +2,8 @@
 
 namespace Tolkam\Asset;
 
-class ManagerException extends \Exception
+use Exception;
+
+class ManagerException extends Exception
 {
 }

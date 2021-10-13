@@ -28,18 +28,20 @@ class UriGroup implements AssetGroupInterface
      * @param string                        $uri
      * @param VersionStrategyInterface|null $versionStrategy
      */
-    public function __construct(string $uri, VersionStrategyInterface $versionStrategy = null)
-    {
+    public function __construct(
+        string $uri,
+        VersionStrategyInterface $versionStrategy = null
+    ) {
         $sep = '/';
-    
+        
         $uri = rtrim(($uri ?: $sep), $sep) . $sep;
         
         if (!$this->isAbsoluteUrl($uri) && !$this->isAbsolutePath($uri)) {
             $uri = $sep . ltrim($uri, $sep);
         }
-    
+        
         $this->uri = $uri;
-        $this->versionStrategy = $versionStrategy ?? new NoVersionStrategy();
+        $this->versionStrategy = $versionStrategy ?? new NoVersionStrategy;
     }
     
     /**

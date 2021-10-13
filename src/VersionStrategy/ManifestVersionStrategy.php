@@ -52,11 +52,13 @@ class ManifestVersionStrategy implements VersionStrategyInterface
     {
         if (!$this->manifest) {
             if (!file_exists($this->manifestPath)) {
-                throw new InvalidArgumentException(sprintf('Manifest file %s does not exist', $this->manifestPath));
+                throw new InvalidArgumentException(
+                    sprintf('Manifest file %s does not exist', $this->manifestPath)
+                );
             }
-    
+            
             $this->manifest = json_decode(file_get_contents($this->manifestPath), true);
-    
+            
             if (0 < json_last_error()) {
                 throw new RuntimeException(sprintf(
                     'Failed to parse manifest file "%s" - %s',
@@ -65,7 +67,7 @@ class ManifestVersionStrategy implements VersionStrategyInterface
                 ));
             }
         }
-    
+        
         return $this->manifest[$asset] ?? null;
     }
 }
